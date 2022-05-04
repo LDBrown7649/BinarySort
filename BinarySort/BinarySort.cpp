@@ -35,7 +35,8 @@ int BinarySearch(int sortedArr[], int arrSize, int searchVal) {
         }
     }
 
-    return 0;
+    // Returns -1 if the item being searched for was not in the array.
+    return -1;
 }
 
 int main()
@@ -52,6 +53,12 @@ int main()
         std::cout << sortedArray[i] << ", ";
     }
     std::cout << std::endl;
-
-    std::cout << "THE INDEX OF 1 IS: " << BinarySearch(sortedArray, array_size, 1);
+    int numToFind = 0;
+    while (numToFind != -1) {
+        std::cout << std::endl << "WHAT VALUE SHOULD BE FOUND?" << std::endl;
+        std::cin >> numToFind;
+        std::cout << "THE INDEX OF " << numToFind << " IS " << BinarySearch(sortedArray, array_size, numToFind);
+        std::cout << std::endl << "Type -1 to quit";
+    }
+    
 }
