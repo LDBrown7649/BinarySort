@@ -1,11 +1,11 @@
 #include <iostream>
 
-int* Sort(int arr[], int numItems) {
+int* Sort(int arr[], int arrSize) {
     // Creates a variable tracking if the items were switched in the current pass.
     bool swappedVals = true;
     while (swappedVals) {
         swappedVals = false;
-        for (int i = 0; i < numItems - 1; i++) {
+        for (int i = 0; i < arrSize - 1; i++) {
             // Swaps the values if the left value was larger than the right value.
             if (arr[i] > arr[i + 1]) {
                 swappedVals = true;
@@ -17,6 +17,25 @@ int* Sort(int arr[], int numItems) {
     }
     // Returns the now sorted list.
     return arr;
+}
+
+int BinarySearch(int sortedArr[], int arrSize, int searchVal) {
+    int leftBounds = 0;
+    int rightBounds = arrSize - 1;
+    while (leftBounds <= rightBounds) {
+        int midVal = (leftBounds + rightBounds) / 2;
+        if (sortedArr[midVal] == searchVal) {
+            return midVal;
+        }
+        else if (sortedArr[midVal] < searchVal) {
+            leftBounds = midVal + 1;
+        }
+        else {
+            rightBounds = midVal - 1;
+        }
+    }
+
+    return 0;
 }
 
 int main()
@@ -33,4 +52,6 @@ int main()
         std::cout << sortedArray[i] << ", ";
     }
     std::cout << std::endl;
+
+    std::cout << "THE INDEX OF 1 IS: " << BinarySearch(sortedArray, array_size, 1);
 }
